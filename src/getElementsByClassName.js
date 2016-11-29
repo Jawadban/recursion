@@ -6,5 +6,16 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className
 ) {
-  // your code here
+	var nodes = [];
+  	function classLookOut(node) {
+    	if (_.contains(node.classList, className)) {
+     		 nodes.push(node);
+    	}
+    	_.each(node.childNodes, function(child) {
+      		classLookOut(child);
+    	});
+  	}
+  classLookOut(document.body);
+  return nodes;
 };
+
